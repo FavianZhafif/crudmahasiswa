@@ -1,0 +1,88 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Tambahkan Mahasiswa
+            small Tambahkan Daftar Mahasiswa Terbaru
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | Dashboard
+                li.active Here
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Tambahkan Data Mahasiswa
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/students/add' enctype="multipart/form-data")
+                    .row
+
+                        .col-xs-12
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Nama
+                                    input(type='text',name='nama',placeholder='Masukan Nama', autofocus, required).form-control
+                                .form-group
+                                    label
+                                        | NIM
+                                    input(type='text',name='nim',placeholder='Masukan NIM', required).form-control
+                                .form-group
+                                    label
+                                        | TTL
+                                    input(type='text',name='ttl',placeholder='Masukan TTL', required).form-control
+                                .form-group
+                                    label
+                                        | Alamat
+                                    input(type='text',name='alamat',placeholder='Masukan Alamat', required).form-control
+                                .form-group
+                                    label
+                                        | Fakultas
+                                    select#fakultas(name="fakultas" placeholder="Masukan Fakultas", required).form-control
+                                        option(value="") 
+                                        option(value="Fakultas Kedokteran Gigi") Fakultas Kedokteran Gigi
+                                        option(value="Fakultas Kedokteran Hewan") Fakultas Kedokteran Hewan
+                                        option(value="Fakultas Kedokteran") Fakultas Kedokteran
+                                        option(value="Fakultas Biologi") Fakultas Biologi
+                                        option(value="Fakultas Farmasi") Fakultas Farmasi
+                                        option(value="Fakultas Geografi") Fakultas Geografi
+                                        option(value="Fakultas Kehutanan") Fakultas Kehutanan
+                                        option(value="Fakultas MIPA") Fakultas MIPA
+                                        option(value="Fakultas Pertanian") Fakultas Pertanian
+                                        option(value="Fakultas Peternakan") Fakultas Peternakan
+                                        option(value="Fakultas Teknik") Fakultas Teknik
+                                        option(value="Fakultas Teknologi Pertanian") Fakultas Teknologi Pertanian
+                                        option(value="Fakultas Ekonomika dan Bisnis") Fakultas Ekonomi dan Bisnis
+                                        option(value="Fakultas Filsafat") Fakultas Filsafat
+                                        option(value="Fakultas Hukum") Fakultas Hukum
+                                        option(value="Fakultas Ilmu Budaya") Fakultas Ilmu Budaya
+                                        option(value="Fakultas ISIPOL") Fakultas ISIPOL
+                                        option(value="Fakultas Psikologi") Fakultas Psikologi
+                                .form-group
+                                    label
+                                        | Tahun Masuk
+                                    input(type='text',name='tahun_masuk',placeholder='Masukan Tahun Masuk', required).form-control
+                                .form-group
+                                    label
+                                        | TTL
+                                    input(type='file',name='gambar',placeholder='Masukan Gambar').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+
+                                a(href='/students').btn.btn-primary.pull-right
+                                    | Back

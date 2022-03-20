@@ -1,0 +1,97 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit Data Mahasiswa
+			small Edit Data Mahasiswa
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| Dashboard 
+			li.active Here 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| Data Mahasiswa
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+					
+			.box-body
+				form(role='form',method='post' action='/students/edit/#{(id==undefined) ? data.id : id}' enctype="multipart/form-data")
+					.row
+						
+						.col-xs-12
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| Nama
+									input(type='text',value="#{data.nama}",name='nama',placeholder='Masukkan Nama', autofocus, required).form-control
+								.form-group
+									label
+										| NIM
+									input(type='text',value="#{ (nim == undefined) ? data.nim : nim }",name='nim',placeholder='Masukkan NIM', required).form-control
+								.form-group
+									label
+										| TTL
+									input(type='text',value="#{ (ttl == undefined) ? data.ttl : ttl }",name='ttl',placeholder='Masukkan TTL', required).form-control
+								.form-group
+									label
+										| Alamat
+									input(type='text',value="#{ (alamat == undefined) ? data.alamat : alamat }",name='alamat',placeholder='Masukkan Alamat', required).form-control
+								.form-group
+									label
+										| Fakultas
+									select(type="text" name="fakultas" placeholder="Masukan Fakultas", required).form-control
+										option(value="#{ (fakultas == undefined) ? data.fakultas : fakultas }") #{ (fakultas == undefined) ? data.fakultas : fakultas }
+										option(value="Fakultas Kedokteran Gigi") Fakultas Kedokteran Gigi
+										option(value="Fakultas Kedokteran Hewan") Fakultas Kedokteran Hewan
+										option(value="Fakultas Kedokteran") Fakultas Kedokteran
+										option(value="Fakultas Biologi") Fakultas Biologi
+										option(value="Fakultas Farmasi") Fakultas Farmasi
+										option(value="Fakultas Geografi") Fakultas Geografi
+										option(value="Fakultas Kehutanan") Fakultas Kehutanan
+										option(value="Fakultas MIPA") Fakultas MIPA
+										option(value="Fakultas Pertanian") Fakultas Pertanian
+										option(value="Fakultas Peternakan") Fakultas Peternakan
+										option(value="Fakultas Teknik") Fakultas Teknik
+										option(value="Fakultas Teknologi Pertanian") Fakultas Teknologi Pertanian
+										option(value="Fakultas Ekonomika dan Bisnis") Fakultas Ekonomika dan Bisnis
+										option(value="Fakultas Filsafat") Fakultas Filsafat
+										option(value="Fakultas Hukum") Fakultas Hukum
+										option(value="Fakultas Ilmu Budaya") Fakultas Ilmu Budaya
+										option(value="Fakultas ISIPOL") Fakultas ISIPOL
+										option(value="Fakultas Psikologi") Fakultas Psikologi
+								.form-group
+									label
+										| Tahun Masuk
+									input(type='text',value="#{ (tahun_masuk == undefined) ? data.tahun_masuk : tahun_masuk }",name='tahun_masuk',placeholder='Masukkan Tahun Masuk', required).form-control
+								.form-group
+									label
+										| Tahun Masuk
+									input(type='file',value="#{ (gambar == undefined) ? data.gambar : gambar }",name='gambar',placeholder='Masukkan Gambar').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/students').btn.btn-primary.pull-right
+									| Back
