@@ -181,7 +181,7 @@ router.get('/logout', function (req, res) {
 			console.log(err);
 		}
 		else {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 	});
 });
