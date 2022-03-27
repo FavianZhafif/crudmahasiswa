@@ -1,63 +1,145 @@
 doctype html
-html
+html(lang='en')
 	head
-		title
-			| #{title}
-		meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport')
-		link(rel='stylesheet', href='/adminlte/bootstrap/css/bootstrap.min.css')
-		link(rel='stylesheet', href='/font-awesome/css/font-awesome.css')
-		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
-		link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css')
-		link(rel='stylesheet', href='/adminlte/dist/css/AdminLTE.min.css')
-		link(rel='stylesheet', href='/adminlte/plugins/iCheck/square/blue.css')
-	body.hold-transition.login-page(style="background: url('/adminlte/dist/img/back.png');-webkit-background-size: 100% 100%; -moz-background-size: 100% 100%; -o-background-size: 100% 100%; background-size: 100% 100%; background-attachment:fixed;")
-		.row.col-md-12
-			.form.row.col-md-10(style= "margin-bottom: 3%; margin-top: 3%; margin-left: 9%; margin-right: 9%;")
-				.login-logo
-					a(href='#')
-						b(style="color: #ffffff;-webkit-text-stroke: 0.03em #15395B; font-size: 50px;")
-							| Universitas Gadjah Mada
-				.div
-					- if (messages.msg_error) 
-						.alert.alert-danger.alert-dismissable 
-							button.close(type='button', data-dismiss='alert', aria-hidden='true') 
-								| ×
-							h4
-								i.icon.fa.fa-ban
-								| Alert! 
-							| !{messages.msg_error}
-					.login-box-body.col-md-7(style="background-color: #ffffff20; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding-left: 4%; padding-right: 4%; padding-bottom: 7%; padding-top: 5.5%; border: 1px solid lightgrey;")
-						p.login-box-msg(style="color: #15395B; font-size: 30px; margin-bottom: 15px; font-weight: bold;")
-							| Create a New Account
-						form(action="/register",method="post")
-							.form-floating.has-feedback
-								input(type="email",placeholder="Email",name="email" style="font-size: 17px; font-weight: 500; border-radius: 8px; padding-bottom: 20px; padding-top: 20px; margin-bottom: 10px").form-control
-								span.glyphicon.glyphicon-envelope.form-control-feedback(style="padding-bottom: 4px; padding-top: 4px;")
-							.form-floating.has-feedback
-								input(type="name",placeholder="Name",name="nama" style="font-size: 17px; font-weight: 500; border-radius: 8px; padding-bottom: 20px; padding-top: 20px; margin-bottom: 10px").form-control
-								span.glyphicon.glyphicon-user.form-control-feedback(style="padding-bottom: 4px; padding-top: 4px;")
-							.form-floating.has-feedback
-								input(type="phone",placeholder="Phone",name="phone" style="font-size: 17px; font-weight: 500; border-radius: 8px; padding-bottom: 20px; padding-top: 20px; margin-bottom: 10px").form-control
-								span.glyphicon.glyphicon-phone.form-control-feedback(style="padding-bottom: 4px; padding-top: 4px;")
-							.form-floating.has-feedback
-								input(type="password",placeholder="Password",name="password" style="font-size: 17px; font-weight: 500; border-radius: 8px; padding-bottom: 20px; padding-top: 20px; margin-bottom: 10px").form-control
-								span.glyphicon.glyphicon-lock.form-control-feedback(style="padding-bottom: 4px; padding-top: 4px;")
-							.row
-								.col-xs-7
-									.social-auth-links.text-center
-									label(style="color: #ffffff; margin-bottom: 6px;")
-										| Already have account?
-									a(href='/login' style="font-size: 15px;").text-center
-										| Sign In
-								.col-xs-5
-									button(type="submit" style="font-size: 15px; color: #fff; border-radius: 5px; background-color: #15395B").btn.btn-block.btn-flat
-										| Register
-					.div.col-md-5(style="background: url('/adminlte/dist/img/ugm.jpg');-webkit-background-size: 100% 100%; -moz-background-size: 100% 100%; -o-background-size: 100% 100%; background-size: 100% 100%;  height: 460px;  border: 1px solid lightgrey;")
+		// Required meta tags
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		link(href='https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap' rel='stylesheet')
+		link(rel='stylesheet' href='/adminlte/template1/fonts/icomoon/style.css')
+		link(rel='stylesheet' href='/adminlte/template1/css/owl.carousel.min.css')
+		// Bootstrap CSS
+		link(rel='stylesheet' href='/adminlte/template1/css/bootstrap.min.css')
+		// Style
+		link(rel='stylesheet' href='/adminlte/template1/css/style.css')
 
-script(type='text/javascript', src='/adminlte/plugins/jQuery/jquery-2.2.3.min.js')
-script(type='text/javascript', src='/adminlte/bootstrap/js/bootstrap.min.js')
-script(type='text/javascript', src='/adminlte/plugins/iCheck/icheck.min.js')
-script(type='text/javascript', src='/adminlte/dist/js/login.js')
-//linear-gradient(to bottom right, #c2c193, #c3b493);
-//background: url('/adminlte/dist/img/back.png')
-//https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgbsn.org%2Fwp-content%2Fuploads%2F2019%2F06%2FUniversitas-Gadjah-Mada-logo.png&f=1&nofb=1
+		meta(charset='utf-8')
+		meta(content='width=device-width, initial-scale=1.0' name='viewport')
+		title UGM
+		meta(content='' name='description')
+		meta(content='' name='keywords')
+		// Google Fonts
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet')
+		// Vendor CSS Files
+		link(href='/adminlte/template/assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/glightbox/css/glightbox.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/swiper/swiper-bundle.min.css' rel='stylesheet')
+		// Template Main CSS File
+		link(href='/adminlte/template/assets/css/style.css' rel='stylesheet')
+	body
+		header#header.fixed-top.d-flex.align-items-center
+			.container.d-flex.align-items-center
+				.logo.me-auto
+					h1
+						a(href='/') UGM
+					// Uncomment below if you prefer to use an image logo
+					// <a href="index.html"><img src="/adminlte/template/assets/img/logo.png" alt="" class="img-fluid"></a>
+				nav#navbar.navbar.order-last.order-lg-0
+					ul
+						li
+							a.nav-link.scrollto(href='/') Home
+						li.dropdown
+							a(href='#')
+								span Daftar Mahasiswa per Tahun
+								i.bi.bi-chevron-down
+							ul
+								li
+									a(href='/tahun/2020') 2020
+								li
+									a(href='/tahun/2021') 2021
+								li
+									a(href='/tahun/2022') 2022
+						li.dropdown
+							a(href='#')
+								span Daftar Mahasiswa per Fakultas
+								i.bi.bi-chevron-down
+							ul
+								li
+									a(href='/fakultas/Kedokteran Gigi') Kedokteran Gigi
+								li
+									a(href='/fakultas/Kedokteran Hewan') Kedokteran Hewan
+								li
+									a(href='/fakultas/Kedokteran') Kedokteran
+								li
+									a(href='/fakultas/Biologi') Biologi
+								li
+									a(href='/fakultas/Farmasi') Farmasi
+								li
+									a(href='/fakultas/Geografi') Geografi
+								li
+									a(href='/fakultas/Kehutanan') Kehutanan
+								li
+									a(href='/fakultas/MIPA') MIPA
+								li
+									a(href='/fakultas/Pertanian') Pertanian
+								li
+									a(href='/fakultas/Peternakan') Peternakan
+								li
+									a(href='/fakultas/Teknik') Teknik
+								li
+									a(href='/fakultas/Teknologi Pertanian') Teknologi Pertanian
+								li
+									a(href='/fakultas/Ekonomi dan Bisnis') Ekonomi dan Bisnis
+								li
+									a(href='/fakultas/Filsafat') Filsafat
+								li
+									a(href='/fakultas/Hukum') Hukum
+								li
+									a(href='/fakultas/Ilmu Budaya') Ilmu Budaya
+								li
+									a(href='/fakultas/ISIPOL') ISIPOL
+								li
+									a(href='/fakultas/Psikologi') Psikologi
+						li
+							a.nav-link.scrollto(href='/login/') Login
+					i.bi.bi-list.mobile-nav-toggle
+				// .navbar
+		.d-lg-flex.half
+			.bg.order-1.order-md-2(style="background-image: url('/adminlte/dist/img/ugmlo.png');")
+			.contents.order-2.order-md-1
+				.container
+					.row.align-items-center.justify-content-center
+						.col-md-7(style="margin-top: 10%")
+							.mb-4
+								h3 Sign Up
+							- if (messages.msg_error) 
+								.alert.alert-danger.bg-danger.text-light.border-0.alert-dismissible
+									button.btn-close.btn-close-white(type='button' data-dismiss='alert' aria-label='Close')
+									h4
+										i.icon.fa.fa-ban
+										| Alert! 
+									| !{messages.msg_error}
+							form(action='/register' method='post')
+								.form-group.first
+									input#email.form-control(type="email" name="email" placeholder="Email")
+								.form-group
+									input#name.form-control(type="name",placeholder="Name",name="nama")
+								.form-group
+									input#phone.form-control(type="phone",placeholder="Phone",name="phone")
+								.form-group.last.mb-3
+									input#password.form-control(type="password" name="password" placeholder="Password")
+								.d-flex.mb-5.align-items-center
+									label.control.control--checkbox.mb-0
+										span.caption Remember me
+										input(type='checkbox')
+										.control__indicator
+								input.btn.btn-block.btn-primary(type='submit' value='Sign Up')
+								.row(style="text-align: center; justify-content: center")
+									label.text-center.my-3.text-muted — Already have an account?  
+										a(href='/login' style="text-decoration: none; color: blue").text-center  Sign In —
+
+		script(src='/adminlte/template1/js/jquery-3.3.1.min.js')
+		script(src='/adminlte/template1/js/popper.min.js')
+		script(src='/adminlte/template1/js/bootstrap.min.js')
+		script(src='/adminlte/template1/js/main.js')
+		// Vendor JS Files
+		script(src='/adminlte/template/assets/vendor/purecounter/purecounter.js')
+		script(src='/adminlte/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')
+		script(src='/adminlte/template/assets/vendor/glightbox/js/glightbox.min.js')
+		script(src='/adminlte/template/assets/vendor/isotope-layout/isotope.pkgd.min.js')
+		script(src='/adminlte/template/assets/vendor/swiper/swiper-bundle.min.js')
+		script(src='/adminlte/template/assets/vendor/waypoints/noframework.waypoints.js')
+		script(src='/adminlte/template/assets/vendor/php-email-form/validate.js')
+		// Template Main JS File
+		script(src='/adminlte/template/assets/js/main.js')

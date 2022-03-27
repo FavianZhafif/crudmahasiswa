@@ -1,14 +1,273 @@
-extends ../layout/base 
-block content 
-	section.content-header(style="padding-top: 70px")
-		h1 
-			| Universitas Gajah Mada
-			small Bulaksumur, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta
-		ol.breadcrumb 
-			li 
-				a(href='#') 
-					i.fa.fa-dashboard
-					| Dashboard
-			li.active Here 
-	section.content
-		
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(content='width=device-width, initial-scale=1.0' name='viewport')
+		title UGM
+		meta(content='' name='description')
+		meta(content='' name='keywords')
+		// Google Fonts
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet')
+		// Vendor CSS Files
+		link(href='/adminlte/template/assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/glightbox/css/glightbox.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/swiper/swiper-bundle.min.css' rel='stylesheet')
+		// Template Main CSS File
+		link(href='/adminlte/template/assets/css/style.css' rel='stylesheet')
+		//
+			=======================================================
+			* Template Name: Lumia - v4.7.0
+			* Template URL: https://bootstrapmade.com/lumia-bootstrap-business-template/
+			* Author: BootstrapMade.com
+			* License: https://bootstrapmade.com/license/
+			========================================================
+	body
+		// ======= Header =======
+		header#header.fixed-top.d-flex.align-items-center
+			.container.d-flex.align-items-center
+				.logo.me-auto
+					h1
+						a(href='/') UGM
+					// Uncomment below if you prefer to use an image logo
+					// <a href="index.html"><img src="/adminlte/template/assets/img/logo.png" alt="" class="img-fluid"></a>
+				nav#navbar.navbar.order-last.order-lg-0
+					ul
+						li
+							a.nav-link.scrollto(href='/') Home
+						li
+							a.nav-link.scrollto(href='#rektor') Dewan Rektor
+						li.dropdown
+							a(href='#')
+								span Daftar Mahasiswa per Tahun
+								i.bi.bi-chevron-down
+							ul
+								li
+									a(href='/tahun/2020') 2020
+								li
+									a(href='/tahun/2021') 2021
+								li
+									a(href='/tahun/2022') 2022
+						li.dropdown
+							a(href='#')
+								span Daftar Mahasiswa per Fakultas
+								i.bi.bi-chevron-down
+							ul
+								li
+									a(href='/fakultas/Kedokteran Gigi') Fakultas Kedokteran Gigi
+								li
+									a(href='/fakultas/Kedokteran Hewan') Fakultas Kedokteran Hewan
+								li
+									a(href='/fakultas/Kedokteran') Fakultas Kedokteran
+								li
+									a(href='/fakultas/Biologi') Fakultas Biologi
+								li
+									a(href='/fakultas/Farmasi') Fakultas Farmasi
+								li
+									a(href='/fakultas/Geografi') Fakultas Geografi
+								li
+									a(href='/fakultas/Kehutanan') Fakultas Kehutanan
+								li
+									a(href='/fakultas/MIPA') Fakultas MIPA
+								li
+									a(href='/fakultas/Pertanian') Fakultas Pertanian
+								li
+									a(href='/fakultas/Peternakan') Fakultas Peternakan
+								li
+									a(href='/fakultas/Teknik') Fakultas Teknik
+								li
+									a(href='/fakultas/Teknologi Pertanian') Fakultas Teknologi Pertanian
+								li
+									a(href='/fakultas/Ekonomi dan Bisnis') Fakultas Ekonomi dan Bisnis
+								li
+									a(href='/fakultas/Filsafat') Fakultas Filsafat
+								li
+									a(href='/fakultas/Hukum') Fakultas Hukum
+								li
+									a(href='/fakultas/Ilmu Budaya') Fakultas Ilmu Budaya
+								li
+									a(href='/fakultas/ISIPOL') Fakultas ISIPOL
+								li
+									a(href='/fakultas/Psikologi') Fakultas Psikologi
+						li
+							a.nav-link.scrollto(href='/login') Login
+					i.bi.bi-list.mobile-nav-toggle
+				// .navbar
+		// End Header
+		// ======= Hero Section =======
+		.pagetitle(style="margin-top: 90px; margin-left: 20px")
+			nav
+				ol.breadcrumb
+					li.breadcrumb-item
+						a(href='/') Home
+		section#hero.d-flex.flex-column.justify-content-center.align-items-center
+			.container.text-center.text-md-left(data-aos='fade-up')
+				h1
+					| Universitas Gadjah Mada
+				h2 Selamat Datang di Website Daftar Mahasiswa Universitas Gadjah Mada
+		// End Hero
+		main#main
+			// ======= What We Do Section =======
+			section#what-we-do.what-we-do
+				.container
+						.section-title
+							h2 Apa Yang Menarik?
+						.row
+							.col-lg-4.col-md-6.d-flex.align-items-stretch
+								.icon-box
+									.icon
+										i.bx.bx-award
+									h4
+										a(href='') Unggulan Kota Pelajar
+									p Terletak di Kota Pelajar Yogyakarta dan menjadi salah satu Perguruan Tinggi Unggulan
+							.col-lg-4.col-md-6.d-flex.align-items-stretch.mt-4.mt-md-0
+								.icon-box
+									.icon
+										i.bx.bx-atom
+									h4
+										a(href='') Lulusan Sukses
+									p Menghasilkan lulusan Sukses yang kini manjadi orang terpandang dan berkedudukan tinggi di Indonesia
+							.col-lg-4.col-md-6.d-flex.align-items-stretch.mt-4.mt-lg-0
+								.icon-box
+									.icon
+										i.bx.bx-badge-check
+									h4
+										a(href='') Pendidikan Berkualitas
+									p masuk dalam kategori perguruan terbaik di Indonesia berdasarkan QS World University Ranking
+			// End What We Do Section
+			// ======= About Section =======
+			section#about.about(style="margin-bottom: 20px")
+				.container
+					.row
+						.col-lg-6
+							img.img-fluid(src='/adminlte/template/assets/img/about.jpg' alt='' )
+						.col-lg-6.pt-4.pt-lg-0
+							h3 Sekilas tentang UGM
+							p(style="text-align: justify")
+								| UGM memiliki jati diri sebagai universitas nasional, universitas perjuangan, universitas pancasila, universitas kerakyatan, dan universitas pusat kebudayaan.
+							p(style="text-align: justify")
+								| Universitas Gadjah Mada lahir dari kancah perjuangan revolusi kemerdekaan bangsa Indonesia. Didirikan pada periode awal kemerdekaan, UGM didaulat sebagai Balai Nasional Ilmu Pengetahuan dan Kebudayaan bagi penyelenggaraan pendidikan tinggi nasional.
+							p(style="text-align: justify")
+								| UGM merupakan gabungan dari beberapa sekolah tinggi yang telah lebih dulu didirikan, di antaranya Balai Perguruan Tinggi Gadjah Mada, Sekolah Tinggi Teknik, dan Akademi Ilmu Politik yang terletak di Yogyakarta, Balai Pendidikan Ahli Hukum di Solo, serta Perguruan Tinggi Kedokteran Bagian Praklinis di Klaten, yang disahkan dengan Peraturan Pemerintah No. 23 Tahun 1949 tentang Peraturan Penggabungan Perguruan Tinggi menjadi Universiteit.
+			// End About Section
+			section#what-we-do.what-we-do
+				.container
+					.section-title
+							h2 Daftar Mahasiswa
+					.data-table
+						table.table.table-bordered(style="font-size: 14.5px")
+							tr
+								th
+									| No
+								th
+									| Foto
+								th
+									| Nama
+								th
+									| NIM
+								th
+									| TTL
+								th
+									| Alamat
+								th
+									| Fakultas
+								th
+									| Tahun Masuk
+								if messages.msg_error
+									| !{messages.msg_error}
+								else
+									for row, index in data 
+										tr
+											td #{index+1}
+											td 
+												if row.gambar
+													img( src="/images/upload/#{row.gambar}" height=100 width=100).img-circle
+												else
+													img( src="/images/upload/no image.jpg" height=100 width=100).img-circle
+											td #{row.nama}
+											td #{row.nim}
+											td #{row.ttl}
+											td #{row.alamat}
+											td #{row.fakultas}
+											td #{row.tahun_masuk}
+			// ======= Testimonials Section =======
+			section#rektor.testimonials.section-bg
+				.container
+					.section-title
+						h2 Dewan Rektor
+					.testimonials-slider.swiper(data-aos='fade-up' data-aos-delay='100')
+						.swiper-wrapper
+							.swiper-slide
+								.testimonial-item(style="padding-bottom: 47.5px;")
+									img(src='/adminlte/template/assets/img/testimonials/testimonials-1.jpg' alt='' weight=200 height=300 style="margin-bottom: 20px; border-radius: 10px")
+									h3 Prof. Ir. Panut Mulyono, M.Eng., D.Eng., IPU, ASEAN Eng.
+									h4 Rektor Universitas Gadjah Mada
+							// End testimonial item
+							.swiper-slide
+								.testimonial-item(style="padding-bottom: 30px")
+									img(src='/adminlte/template/assets/img/testimonials/testimonials-2.jpg' alt='' weight=200 height=300 style="margin-bottom: 20px; border-radius: 10px")
+									h3 Prof. Dr. Ir. Djagal Wiseso Marseno, M.Agr
+									h4 Wakil Rektor Bidang Pendidikan, Pengajaran dan Kemahasiswaan
+							// End testimonial item
+							.swiper-slide
+								.testimonial-item(style="padding-bottom: 52px")
+									img(src='/adminlte/template/assets/img/testimonials/testimonials-3.jpg' alt='' weight=200 height=300 style="margin-bottom: 20px; border-radius: 10px")
+									h3 Supriyadi, Ph.D., M.Sc., CA., Ak.
+									h4 Wakil Rektor Bidang Perencanaan, Keuangan dan Sistem Informasi
+							// End testimonial item
+							.swiper-slide
+								.testimonial-item(style="padding-bottom: 52px")
+									img(src='/adminlte/template/assets/img/testimonials/testimonials-4.jpg' alt='' weight=200 height=300 style="margin-bottom: 20px; border-radius: 10px")
+									h3 drg. Ika Dewi Ana, M.Kes., Ph.D
+									h4 Wakil Rektor Bidang Penelitian dan Pengabdian kepada Masyarakat
+							// End testimonial item
+							.swiper-slide
+								.testimonial-item(style="padding-bottom: 30px")
+									img(src='/adminlte/template/assets/img/testimonials/testimonials-5.jpg' alt='' weight=200 height=300 style="margin-bottom: 20px; border-radius: 10px")
+									h3 Prof. Dr. Ir. Bambang Agus Kironoto
+									h4 Wakil Rektor Bidang Sumber Daya Manusia dan Aset
+							// End testimonial item
+							.swiper-slide
+								.testimonial-item(style="padding-bottom: 30px")
+									img(src='/adminlte/template/assets/img/testimonials/testimonials-6.jpg' alt='' weight=200 height=300 style="margin-bottom: 20px; border-radius: 10px")
+									h3 Prof. Dr. Paripurna, S.H., M.Hum., LL.M.
+									h4 Wakil Rektor Bidang Kerja Sama dan Alumni
+							// End testimonial item
+						.swiper-pagination
+			// End Testimonials Section
+			// End #main
+			// ======= Footer =======
+			footer#footer
+				.container.d-md-flex.py-4
+					.me-md-auto.text-center.text-md-start
+						.copyright
+							| © Copyright 
+							strong
+								span Favian Zhafif Arkan
+							| . All Rights Reserved
+						.credits
+							// All the links in the footer should remain intact.
+							// You can delete the links only if you purchased the pro version.
+							// Licensing information: https://bootstrapmade.com/license/
+							// Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/lumia-bootstrap-business-template/
+					.social-links.text-center.text-md-right.pt-3.pt-md-0
+						a.facebook(href='#')
+							i.bx.bxl-facebook
+						a.instagram(href='#')
+							i.bx.bxl-instagram
+						a.google-plus(href='#')
+							i.bx.bxl-skype
+			// End Footer
+			a.back-to-top.d-flex.align-items-center.justify-content-center(href='#')
+				i.bi.bi-arrow-up-short
+			// Vendor JS Files
+			script(src='/adminlte/template/assets/vendor/purecounter/purecounter.js')
+			script(src='/adminlte/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')
+			script(src='/adminlte/template/assets/vendor/glightbox/js/glightbox.min.js')
+			script(src='/adminlte/template/assets/vendor/isotope-layout/isotope.pkgd.min.js')
+			script(src='/adminlte/template/assets/vendor/swiper/swiper-bundle.min.js')
+			script(src='/adminlte/template/assets/vendor/waypoints/noframework.waypoints.js')
+			script(src='/adminlte/template/assets/vendor/php-email-form/validate.js')
+			// Template Main JS File
+			script(src='/adminlte/template/assets/js/main.js')

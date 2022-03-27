@@ -4,8 +4,8 @@ var http = require("http");
 var fs = require("fs");
 var fileUpload = require('express-fileupload');
 var path = require('path');
-var dbConn = require('../library/db');
 var formidable = require("formidable");
+var dbConn = require('../library/db');
 const check = require('express-validator/check').check;
 const validationResult = require('express-validator/check').validationResult;
 var mv = require("mv");
@@ -13,7 +13,7 @@ var authentication_mdl = require("../middlewares/authentication");
 var session_store;
 /* GET Student page. */
 
-router.get("/", authentication_mdl.is_login, function (req, res, next) {
+router.get("/students/", authentication_mdl.is_login, function (req, res, next) {
   req.getConnection(function (err, connection) {
     var query = connection.query(
       "SELECT * FROM daftar",
@@ -31,15 +31,15 @@ router.get("/", authentication_mdl.is_login, function (req, res, next) {
   });
 });
 
-router.get("/kedokterangigi", authentication_mdl.is_login, function (req, res, next) {
+router.get("/tahun/(:tahun)", authentication_mdl.is_login, function (req, res, next) {
   req.getConnection(function (err, connection) {
     var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Kedokteran Gigi'",
+      "SELECT * FROM daftar WHERE tahun_masuk= ?",req.params.tahun,
       function (err, rows) {
         if (err) var errornya = ("Error Selecting : %s ", err);
         req.flash("msg_error", errornya);
-        res.render("student/kedokterangigi", {
-          title: "kedokterangigi",
+        res.render("student/tahun", {
+          title: "Tahun Masuk",
           data: rows,
           session_store: req.session,
         });
@@ -49,356 +49,14 @@ router.get("/kedokterangigi", authentication_mdl.is_login, function (req, res, n
   });
 });
 
-router.get("/kedokteranhewan", authentication_mdl.is_login, function (req, res, next) {
+router.get("/fakultas/(:fakultas)", authentication_mdl.is_login, function (req, res, next) {
   req.getConnection(function (err, connection) {
     var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Kedokteran Hewan'",
+      "SELECT * FROM daftar WHERE fakultas= ?",req.params.fakultas,
       function (err, rows) {
         if (err) var errornya = ("Error Selecting : %s ", err);
         req.flash("msg_error", errornya);
-        res.render("student/kedokteranhewan", {
-          title: "kedokteranhewan",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/kedokteran", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Kedokteran'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/kedokteran", {
-          title: "kedokteran",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/biologi", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Biologi'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/biologi", {
-          title: "biologi",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/farmasi", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Farmasi'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/farmasi", {
-          title: "farmasi",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/geografi", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Geografi'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/geografi", {
-          title: "geografi",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/kehutanan", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Kehutanan'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/kehutanan", {
-          title: "kehutanan",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/mipa", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas MIPA'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/mipa", {
-          title: "mipa",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/pertanian", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Pertanian'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/pertanian", {
-          title: "pertanian",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/peternakan", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Peternakan'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/peternakan", {
-          title: "peternakan",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/teknik", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Teknik'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/teknik", {
-          title: "teknik",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/teknologipertanian", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Teknologi Pertanian'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/teknologipertanian", {
-          title: "teknologipertanian",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/ekonomidanbisnis", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Ekonomi dan Bisnis'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/ekonomidanbisnis", {
-          title: "ekonomidanbisnis",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/filsafat", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Filsafat'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/filsafat", {
-          title: "filsafat",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/hukum", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Hukum'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/hukum", {
-          title: "hukum",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/ilmubudaya", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Ilmu Budaya'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/ilmubudaya", {
-          title: "ilmubudaya",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/isipol", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas ISIPOL'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/isipol", {
-          title: "isipol",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/psikologi", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE fakultas='Fakultas Psikologi'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/psikologi", {
-          title: "psikologi",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/2020", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE tahun_masuk='2020'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/2020", {
-          title: "2020",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/2021", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE tahun_masuk='2021'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/2021", {
-          title: "2021",
-          data: rows,
-          session_store: req.session,
-        });
-      }
-    );
-    //console.log(query.sql);
-  });
-});
-
-router.get("/2022", authentication_mdl.is_login, function (req, res, next) {
-  req.getConnection(function (err, connection) {
-    var query = connection.query(
-      "SELECT * FROM daftar WHERE tahun_masuk='2022'",
-      function (err, rows) {
-        if (err) var errornya = ("Error Selecting : %s ", err);
-        req.flash("msg_error", errornya);
-        res.render("student/2022", {
+        res.render("student/fakultas", {
           title: "2022",
           data: rows,
           session_store: req.session,
@@ -427,10 +85,10 @@ router.delete(
             if (err) {
               var errors_detail = ("Error Delete : %s ", err);
               req.flash("msg_error", errors_detail);
-              res.redirect("/students");
+              res.redirect("/students/students");
             } else {
               req.flash("msg_info", "Delete Student Success");
-              res.redirect("/students");
+              res.redirect("/students/students");
             }
           }
         );
@@ -449,11 +107,11 @@ router.get(
           if (err) {
             var errornya = ("Error Selecting : %s ", err);
             req.flash("msg_error", errors_detail);
-            res.redirect("/students");
+            res.redirect("/students/students");
           } else {
             if (rows.length <= 0) {
               req.flash("msg_error", "Student can't be find!");
-              res.redirect("/students");
+              res.redirect("/students/students");
             } else {
               console.log(rows);
               res.render("student/edit", {
@@ -493,7 +151,7 @@ router.put(
           };
       }else{
         var file = req.files.gambar;
-        file.mimetype == "image/jpeg";
+        file.mimetype == "image/jpeg" || "image/png";
         file.mv("public/images/upload/" + file.name);
 
         var student = {
@@ -527,7 +185,7 @@ router.put(
               });
             } else {
               req.flash("msg_info", "Update student success");
-              res.redirect("/students");
+              res.redirect("/students/students");
             }
           }
         );
@@ -568,7 +226,7 @@ router.post("/add", function (req, res, next) {
     var file = req.files.gambar;
     var gambar = file.name;
 
-    if (file.mimetype == "image/jpeg") {
+    if (file.mimetype == "image/jpeg" || file.mimetype == "image/png") {
       file.mv("public/images/upload/" + file.name, function (err) {
         if (err) return res.status(500).send(err);
         var sql =
@@ -594,13 +252,13 @@ router.post("/add", function (req, res, next) {
             res.render("student/add-student");
           } else {
             req.flash("msg_info", "Create student success");
-            res.redirect("/students");
+            res.redirect("/students/students");
           }
         });
       });
     } else {
       req.flash("msg_info", "Create student success");
-      res.redirect("/students");
+      res.redirect("/students/students");
     }
   } else {
     console.log(errors);

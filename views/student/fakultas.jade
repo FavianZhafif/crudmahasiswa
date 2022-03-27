@@ -1,0 +1,245 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(content='width=device-width, initial-scale=1.0' name='viewport')
+		title #{data[0].fakultas}
+		meta(content='' name='description')
+		meta(content='' name='keywords')
+		// Google Fonts
+		link(href='https://fonts.gstatic.com' rel='preconnect')
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet')
+		// Vendor CSS Files
+		link(href='/adminlte/template2/assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/quill/quill.snow.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/quill/quill.bubble.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/remixicon/remixicon.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/simple-datatables/style.css' rel='stylesheet')
+		// Template Main CSS File
+		link(href='/adminlte/template2/assets/css/style.css' rel='stylesheet')
+		//
+			=======================================================
+			* Template Name: NiceAdmin - v2.2.2
+			* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+			* Author: BootstrapMade.com
+			* License: https://bootstrapmade.com/license/
+			========================================================
+	body
+		// ======= Header =======
+		header#header.header.fixed-top.d-flex.align-items-center
+			.d-flex.align-items-center.justify-content-between
+				a.logo.d-flex.align-items-center(href='/students/students')
+					img(src='/adminlte/dist/img/ugm3.png' alt='' width=35)
+					span.d-none.d-lg-block Admin UGM
+				i.bi.bi-list.toggle-sidebar-btn
+			// End Logo
+			nav.header-nav.ms-auto
+				ul.d-flex.align-items-center
+					li.nav-item.d-block.d-lg-none
+						li.nav-item.dropdown
+							// End Messages Nav
+							li.nav-item.dropdown.pe-3
+								a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
+									img.rounded-circle(src='/adminlte/dist/img/ss.jpeg' alt='Profile')
+									span.d-none.d-md-block.dropdown-toggle.ps-2 Favian Zhafif Arkan
+								// End Profile Iamge Icon
+								ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.profile
+									li.dropdown-header
+										h6 Favian Zhafif Arkan
+										span Developer
+									li
+										hr.dropdown-divider
+									li
+										a.dropdown-item.d-flex.align-items-center(href='/logout')
+											i.bi.bi-box-arrow-right
+											span Sign Out
+								// End Profile Dropdown Items
+								// End Profile Nav
+								// End Icons Navigation
+								// End Header
+								// ======= Sidebar =======
+								aside#sidebar.sidebar
+									ul#sidebar-nav.sidebar-nav
+										li.nav-item
+											a.nav-link.collapsed(href='/students/students')
+												i.bi.bi-journal-bookmark-fill
+												span Daftar Utama
+										// End Dashboard Nav
+										li.nav-item
+											a.nav-link(data-bs-target='#components-nav' data-bs-toggle='collapse' href='#')
+												i.bi.bi-house-door-fill
+												span Fakultas
+												i.bi.bi-chevron-down.ms-auto
+											ul#components-nav.nav-content.collapse.show(data-bs-parent='#sidebar-nav')
+												li
+													a(href='/students/fakultas/Kedokteran Gigi')
+														i.bi.bi-circle
+														| Kedokteran Gigi
+												li
+													a(href='/students/fakultas/Kedokteran Hewan')
+														i.bi.bi-circle
+														| Kedokteran Hewan
+												li
+													a(href='/students/fakultas/Kedokteran')
+														i.bi.bi-circle
+														| Kedokteran
+												li
+													a(href='/students/fakultas/Biologi')
+														i.bi.bi-circle
+														| Biologi
+												li
+													a(href='/students/fakultas/Farmasi')
+														i.bi.bi-circle
+														| Farmasi
+												li
+													a(href='/students/fakultas/Geografi')
+														i.bi.bi-circle
+														| Geografi
+												li
+													a(href='/students/fakultas/Kehutanan')
+														i.bi.bi-circle
+														| Kehutanan
+												li
+													a(href='/students/fakultas/MIPA')
+														i.bi.bi-circle
+														| MIPA
+												li
+													a(href='/students/fakultas/Pertanian')
+														i.bi.bi-circle
+														| Pertanian
+												li
+													a(href='/students/fakultas/Peternakan')
+														i.bi.bi-circle
+														| Peternakan
+												li
+													a(href='/students/fakultas/Teknik')
+														i.bi.bi-circle
+														| Teknik
+												li
+													a(href='/students/fakultas/Teknologi Pertanian')
+														i.bi.bi-circle
+														| Teknologi Pertanian
+												li
+													a(href='/students/fakultas/Ekonomi dan Bisnis')
+														i.bi.bi-circle
+														| Ekonomi dan Bisnis
+												li
+													a(href='/students/fakultas/Filsafat')
+														i.bi.bi-circle
+														| Filsafat
+												li
+													a(href='/students/fakultas/Hukum')
+														i.bi.bi-circle
+														| Hukum
+												li
+													a(href='/students/fakultas/Ilmu Budaya')
+														i.bi.bi-circle
+														| Ilmu Budaya
+												li
+													a(href='/students/fakultas/ISIPOL')
+														i.bi.bi-circle
+														| ISIPOL
+												li
+													a(href='/students/fakultas/Psikologi')
+														i.bi.bi-circle
+														| Psikologi
+										li.nav-item
+											a.nav-link.collapsed(data-bs-target='#tahun-nav' data-bs-toggle='collapse' href='#')
+												i.bi.bi-calendar-check-fill
+												span Tahun Masuk
+												i.bi.bi-chevron-down.ms-auto
+											ul#tahun-nav.nav-content.collapse(data-bs-parent='#sidebar-nav')
+												li
+													a(href='/students/tahun/2020')
+														i.bi.bi-circle
+														| 2020
+												li
+													a(href='/students/tahun/2021')
+														i.bi.bi-circle
+														| 2021
+												li
+													a(href='/students/tahun/2022')
+														i.bi.bi-circle
+														| 2022
+										// End Sidebar
+		main#main.main
+								.pagetitle
+									h1 Daftar Mahasiswa
+									nav
+										ol.breadcrumb
+											li.breadcrumb-item
+												a(href='#') Fakultas
+											li.breadcrumb-item.active #{data[0].fakultas}
+								// End Page Title
+								section.section
+									.row
+										.col-lg-12
+											.card
+												.card-body
+													h5.card-title Daftar Mahasiswa
+													// Table with stripped rows
+													table.table.datatable(style="font-size: 13px !important")
+														thead
+															tr
+																th(scope='col') No
+																th(scope='col') Foto
+																th(scope='col') Nama
+																th(scope='col') NIM
+																th(scope='col') TTL
+																th(scope='col') Alamat
+																th(scope='col') Fakultas
+																th(scope='col') TM
+																th(scope='col') Action
+														tbody
+															if messages.msg_error
+																| !{messages.msg_error}
+															else
+																for row, index in data 
+																	tr
+																		td(scope='row') #{index+1}
+																		td 
+																			if row.gambar
+																				img( src="/images/upload/#{row.gambar}" height=100 width=100).img-circle
+																			else
+																				img( src="/images/upload/no image.jpg" height=100 width=100).img-circle
+																		td #{row.nama}
+																		td #{row.nim}
+																		td #{row.ttl}
+																		td #{row.alamat}
+																		td #{row.fakultas}
+																		td #{row.tahun_masuk}
+																		td
+																			div(style='display:inline-block')
+																				a(href='/students/edit/#{row.id}').btn.btn-sm.btn-primary
+																					i.ri.ri-edit-circle-fill
+																			| 
+																			div(style='display:inline-block')
+																				form(method='post' action='/students/delete/#{row.id}')
+																					input(type="hidden" name="_method" value="DELETE")
+																					button.btn.btn-sm.btn-danger(type='submit')
+																						i.ri.ri-delete-bin-2-fill
+													// End Table with stripped rows
+													// End #main
+													// ======= Footer =======
+		footer#footer.footer
+														.copyright
+															| © Copyright 
+															strong
+																span Favian Zhafif Arkan
+															| . All Rights Reserved
+													// End Footer
+		a.back-to-top.d-flex.align-items-center.justify-content-center(href='#')
+			i.bi.bi-arrow-up-short
+													// Vendor JS Files
+													script(src='/adminlte/template2/assets/vendor/apexcharts/apexcharts.min.js')
+													script(src='/adminlte/template2/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')
+													script(src='/adminlte/template2/assets/vendor/chart.js/chart.min.js')
+													script(src='/adminlte/template2/assets/vendor/echarts/echarts.min.js')
+													script(src='/adminlte/template2/assets/vendor/quill/quill.min.js')
+													script(src='/adminlte/template2/assets/vendor/simple-datatables/simple-datatables.js')
+													script(src='/adminlte/template2/assets/vendor/tinymce/tinymce.min.js')
+													script(src='/adminlte/template2/assets/vendor/php-email-form/validate.js')
+													// Template Main JS File
+													script(src='/adminlte/template2/assets/js/main.js')

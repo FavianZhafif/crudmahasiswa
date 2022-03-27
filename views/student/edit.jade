@@ -1,97 +1,266 @@
-extends ../layout/base 
-block content 
-	section.content-header 
-		h1 
-			| Edit Data Mahasiswa
-			small Edit Data Mahasiswa
-		ol.breadcrumb 
-			li 
-				a(href='#') 
-					i.fa.fa-dashboard
-					| Dashboard 
-			li.active Here 
-	section.content
-		.box
-			.box-header.with-border
-				h3.box-title
-					| Data Mahasiswa
-				.box-tools.pull-right
-					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
-						i.fa.fa-minus
-					
-			.box-body
-				form(role='form',method='post' action='/students/edit/#{(id==undefined) ? data.id : id}' enctype="multipart/form-data")
-					.row
-						
-						.col-xs-12
-							.box-body
-								- if (messages.msg_error) 
-									.alert.alert-danger.alert-dismissable 
-										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
-											| ×
-										h4
-											i.icon.fa.fa-ban
-											| Alert! 
-										| !{messages.msg_error}
-								- if (messages.msg_info) 
-									.alert.alert-success.alert-dismissable 
-										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
-											| ×
-										h4
-											i.icon.fa.fa-ban
-											| Success! 
-										| !{messages.msg_info}
-								.form-group
-									label
-										| Nama
-									input(type='text',value="#{data.nama}",name='nama',placeholder='Masukkan Nama', autofocus, required).form-control
-								.form-group
-									label
-										| NIM
-									input(type='text',value="#{ (nim == undefined) ? data.nim : nim }",name='nim',placeholder='Masukkan NIM', required).form-control
-								.form-group
-									label
-										| TTL
-									input(type='text',value="#{ (ttl == undefined) ? data.ttl : ttl }",name='ttl',placeholder='Masukkan TTL', required).form-control
-								.form-group
-									label
-										| Alamat
-									input(type='text',value="#{ (alamat == undefined) ? data.alamat : alamat }",name='alamat',placeholder='Masukkan Alamat', required).form-control
-								.form-group
-									label
-										| Fakultas
-									select(type="text" name="fakultas" placeholder="Masukan Fakultas", required).form-control
-										option(value="#{ (fakultas == undefined) ? data.fakultas : fakultas }") #{ (fakultas == undefined) ? data.fakultas : fakultas }
-										option(value="Fakultas Kedokteran Gigi") Fakultas Kedokteran Gigi
-										option(value="Fakultas Kedokteran Hewan") Fakultas Kedokteran Hewan
-										option(value="Fakultas Kedokteran") Fakultas Kedokteran
-										option(value="Fakultas Biologi") Fakultas Biologi
-										option(value="Fakultas Farmasi") Fakultas Farmasi
-										option(value="Fakultas Geografi") Fakultas Geografi
-										option(value="Fakultas Kehutanan") Fakultas Kehutanan
-										option(value="Fakultas MIPA") Fakultas MIPA
-										option(value="Fakultas Pertanian") Fakultas Pertanian
-										option(value="Fakultas Peternakan") Fakultas Peternakan
-										option(value="Fakultas Teknik") Fakultas Teknik
-										option(value="Fakultas Teknologi Pertanian") Fakultas Teknologi Pertanian
-										option(value="Fakultas Ekonomika dan Bisnis") Fakultas Ekonomika dan Bisnis
-										option(value="Fakultas Filsafat") Fakultas Filsafat
-										option(value="Fakultas Hukum") Fakultas Hukum
-										option(value="Fakultas Ilmu Budaya") Fakultas Ilmu Budaya
-										option(value="Fakultas ISIPOL") Fakultas ISIPOL
-										option(value="Fakultas Psikologi") Fakultas Psikologi
-								.form-group
-									label
-										| Tahun Masuk
-									input(type='text',value="#{ (tahun_masuk == undefined) ? data.tahun_masuk : tahun_masuk }",name='tahun_masuk',placeholder='Masukkan Tahun Masuk', required).form-control
-								.form-group
-									label
-										| Tahun Masuk
-									input(type='file',value="#{ (gambar == undefined) ? data.gambar : gambar }",name='gambar',placeholder='Masukkan Gambar').form-control
-							.box-footer
-								input(type="hidden",name="_method", value="PUT")
-								button(type='submit').btn.btn-primary
-									i.fa.fa-pencil 
-									|  Edit
-								a(href='/students').btn.btn-primary.pull-right
-									| Back
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(content='width=device-width, initial-scale=1.0' name='viewport')
+		title Daftar Mahasiswa
+		meta(content='' name='description')
+		meta(content='' name='keywords')
+		// Google Fonts
+		link(href='https://fonts.gstatic.com' rel='preconnect')
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet')
+		// Vendor CSS Files
+		link(href='/adminlte/template2/assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/quill/quill.snow.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/quill/quill.bubble.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/remixicon/remixicon.css' rel='stylesheet')
+		link(href='/adminlte/template2/assets/vendor/simple-datatables/style.css' rel='stylesheet')
+		// Template Main CSS File
+		link(href='/adminlte/template2/assets/css/style.css' rel='stylesheet')
+		//
+			=======================================================
+			* Template Name: NiceAdmin - v2.2.2
+			* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+			* Author: BootstrapMade.com
+			* License: https://bootstrapmade.com/license/
+			========================================================
+	body
+		// ======= Header =======
+		header#header.header.fixed-top.d-flex.align-items-center
+			.d-flex.align-items-center.justify-content-between
+				a.logo.d-flex.align-items-center(href='/students/students')
+					img(src='/adminlte/dist/img/ugm3.png' alt='' width=35)
+					span.d-none.d-lg-block Admin UGM
+				i.bi.bi-list.toggle-sidebar-btn
+			// End Logo
+			nav.header-nav.ms-auto
+				ul.d-flex.align-items-center
+					li.nav-item.d-block.d-lg-none
+						li.nav-item.dropdown
+							// End Messages Nav
+							li.nav-item.dropdown.pe-3
+								a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
+									img.rounded-circle(src='/adminlte/dist/img/ss.jpeg' alt='Profile')
+									span.d-none.d-md-block.dropdown-toggle.ps-2 Favian Zhafif Arkan
+								// End Profile Iamge Icon
+								ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.profile
+									li.dropdown-header
+										h6 Favian Zhafif Arkan
+										span Developer
+									li
+										hr.dropdown-divider
+									li
+										a.dropdown-item.d-flex.align-items-center(href='/logout')
+											i.bi.bi-box-arrow-right
+											span Sign Out
+								// End Profile Dropdown Items
+								// End Profile Nav
+								// End Icons Navigation
+								// End Header
+								// ======= Sidebar =======
+								aside#sidebar.sidebar
+									ul#sidebar-nav.sidebar-nav
+										li.nav-item
+											a.nav-link.collapsed(href='/students/students')
+												i.bi.bi-grid
+												span Daftar Utama
+										// End Dashboard Nav
+										li.nav-item
+											a.nav-link.collapsed(data-bs-target='#components-nav' data-bs-toggle='collapse' href='#')
+												i.bi.bi-menu-button-wide
+												span Fakultas
+												i.bi.bi-chevron-down.ms-auto
+											ul#components-nav.nav-content.collapse(data-bs-parent='#sidebar-nav')
+												li
+													a(href='/students/fakultas/Kedokteran Gigi')
+														i.bi.bi-circle
+														| Kedokteran Gigi
+												li
+													a(href='/students/fakultas/Kedokteran Hewan')
+														i.bi.bi-circle
+														| Kedokteran Hewan
+												li
+													a(href='/students/fakultas/Kedokteran')
+														i.bi.bi-circle
+														| Kedokteran
+												li
+													a(href='/students/fakultas/Biologi')
+														i.bi.bi-circle
+														| Biologi
+												li
+													a(href='/students/fakultas/Farmasi')
+														i.bi.bi-circle
+														| Farmasi
+												li
+													a(href='/students/fakultas/Geografi')
+														i.bi.bi-circle
+														| Geografi
+												li
+													a(href='/students/fakultas/Kehutanan')
+														i.bi.bi-circle
+														| Kehutanan
+												li
+													a(href='/students/fakultas/MIPA')
+														i.bi.bi-circle
+														| MIPA
+												li
+													a(href='/students/fakultas/Pertanian')
+														i.bi.bi-circle
+														| Pertanian
+												li
+													a(href='/students/fakultas/Peternakan')
+														i.bi.bi-circle
+														| Peternakan
+												li
+													a(href='/students/fakultas/Teknik')
+														i.bi.bi-circle
+														| Teknik
+												li
+													a(href='/students/fakultas/Teknologi Pertanian')
+														i.bi.bi-circle
+														| Teknologi Pertanian
+												li
+													a(href='/students/fakultas/Ekonomi dan Bisnis')
+														i.bi.bi-circle
+														| Ekonomi dan Bisnis
+												li
+													a(href='/students/fakultas/Filsafat')
+														i.bi.bi-circle
+														| Filsafat
+												li
+													a(href='/students/fakultas/Hukum')
+														i.bi.bi-circle
+														| Hukum
+												li
+													a(href='/students/fakultas/Ilmu Budaya')
+														i.bi.bi-circle
+														| Ilmu Budaya
+												li
+													a(href='/students/fakultas/ISIPOL')
+														i.bi.bi-circle
+														| ISIPOL
+												li
+													a(href='/students/fakultas/Psikologi')
+														i.bi.bi-circle
+														| Psikologi
+										li.nav-item
+											a.nav-link.collapsed(data-bs-target='#tahun-nav' data-bs-toggle='collapse' href='#')
+												i.bi.bi-menu-button-wide
+												span Tahun Masuk
+												i.bi.bi-chevron-down.ms-auto
+											ul#tahun-nav.nav-content.collapse(data-bs-parent='#sidebar-nav')
+												li
+													a(href='/students/tahun/2020')
+														i.bi.bi-circle
+														| 2020
+												li
+													a(href='/students/tahun/2021')
+														i.bi.bi-circle
+														| 2021
+												li
+													a(href='/students/tahun/2022')
+														i.bi.bi-circle
+														| 2022
+										// End Sidebar
+		main#main.main
+			.pagetitle
+				h1 Daftar Mahasiswa
+				nav
+					ol.breadcrumb
+						li.breadcrumb-item
+							a(href='#') Dashboard
+						li.breadcrumb-item.active Edit
+			// End Page Title
+			section.section
+				.row
+					.col-lg-12
+						.card
+							.card-body
+								form(role='form' method='post' action='/students/edit/#{(id==undefined) ? data.id : id}' enctype="multipart/form-data")
+									.row
+										.col-xs-12
+											h5.card-title Daftar Mahasiswa
+											- if (messages.msg_error)
+												.alert.alert-danger.bg-danger.text-light.border-0.alert-dismissible.fade.show(role='alert')
+													button.btn-close.btn-close-white(type='button' data-bs-dismiss='alert' aria-label='Close')
+													h4
+														i.icon.fa.fa-ban
+														| Alert!
+													| !{messages.msg_error}
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputText') Nama
+												.col-sm-10
+													input.form-control(type='text' value="#{data.nama}" name='nama' placeholder='Masukan Nama', autofocus)
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputText') NIM
+												.col-sm-10
+													input.form-control(type='text' value="#{ (nim == undefined) ? data.nim : nim }" name='nim' placeholder='Masukan NIM')
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputDate') Tanggal Lahir
+												.col-sm-10
+													input.form-control(type='date' value="#{ (ttl == undefined) ? data.ttl : ttl }" name='ttl' placeholder='Masukan TTL')
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputText') Alamat
+												.col-sm-10
+													input.form-control(type='text' value="#{ (alamat == undefined) ? data.alamat : alamat }" name='alamat' placeholder='Masukan Alamat')
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputText') Fakultas
+												.col-sm-10
+													select#fakultas(name="fakultas" placeholder="Masukan Fakultas").form-control
+														option(value="#{ (fakultas == undefined) ? data.fakultas : fakultas }") #{ (fakultas == undefined) ? data.fakultas : fakultas }
+														option(value="Kedokteran Gigi") Kedokteran Gigi
+														option(value="Kedokteran Hewan") Kedokteran Hewan
+														option(value="Kedokteran") Kedokteran
+														option(value="Biologi") Biologi
+														option(value="Farmasi") Farmasi
+														option(value="Geografi") Geografi
+														option(value="Kehutanan") Kehutanan
+														option(value="MIPA") MIPA
+														option(value="Pertanian") Pertanian
+														option(value="Peternakan") Peternakan
+														option(value="Teknik") Teknik
+														option(value="Teknologi Pertanian") Teknologi Pertanian
+														option(value="Ekonomika dan Bisnis") Ekonomi dan Bisnis
+														option(value="Filsafat") Filsafat
+														option(value="Hukum") Hukum
+														option(value="Ilmu Budaya") Ilmu Budaya
+														option(value="ISIPOL") ISIPOL
+														option(value="Psikologi") Psikologi
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputText') Tahun Masuk
+												.col-sm-10
+													input.form-control(type='text' value="#{ (tahun_masuk == undefined) ? data.tahun_masuk : tahun_masuk }" name='tahun_masuk' placeholder='Masukan Tahun Masuk')
+											.row.mb-3
+												label.col-sm-2.col-form-label(for='inputNumber') File Upload
+												.col-sm-10
+													input#formFile.form-control(type='file' value="#{ (gambar == undefined) ? data.gambar : gambar }" name='gambar' placeholder='Masukan Gambar')
+											.box-footer
+												input(type="hidden" name="_method" value="PUT")
+												button(type='submit' style="margin-right: 15px").btn.btn-primary
+													| Submit
+												a(href='/students/students').btn.btn-secondary
+													| Back
+											// End Table with stripped rows
+											// End #main
+											// ======= Footer =======
+		footer#footer.footer
+			.copyright
+				| © Copyright 
+				strong
+					span Favian Zhafif Arkan
+				| . All Rights Reserved
+		a.back-to-top.d-flex.align-items-center.justify-content-center(href='#')
+			i.bi.bi-arrow-up-short
+				// Vendor JS Files
+				script(src='/adminlte/template2/assets/vendor/apexcharts/apexcharts.min.js')
+				script(src='/adminlte/template2/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')
+				script(src='/adminlte/template2/assets/vendor/chart.js/chart.min.js')
+				script(src='/adminlte/template2/assets/vendor/echarts/echarts.min.js')
+				script(src='/adminlte/template2/assets/vendor/quill/quill.min.js')
+				script(src='/adminlte/template2/assets/vendor/simple-datatables/simple-datatables.js')
+				script(src='/adminlte/template2/assets/vendor/tinymce/tinymce.min.js')
+				script(src='/adminlte/template2/assets/vendor/php-email-form/validate.js')
+				// Template Main JS File
+				script(src='/adminlte/template2/assets/js/main.js')

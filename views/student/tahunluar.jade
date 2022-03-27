@@ -1,0 +1,183 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		meta(content='width=device-width, initial-scale=1.0' name='viewport')
+		title UGM
+		meta(content='' name='description')
+		meta(content='' name='keywords')
+		// Google Fonts
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' rel='stylesheet')
+		// Vendor CSS Files
+		link(href='/adminlte/template/assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/boxicons/css/boxicons.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/glightbox/css/glightbox.min.css' rel='stylesheet')
+		link(href='/adminlte/template/assets/vendor/swiper/swiper-bundle.min.css' rel='stylesheet')
+		// Template Main CSS File
+		link(href='/adminlte/template/assets/css/style.css' rel='stylesheet')
+		//
+			=======================================================
+			* Template Name: Lumia - v4.7.0
+			* Template URL: https://bootstrapmade.com/lumia-bootstrap-business-template/
+			* Author: BootstrapMade.com
+			* License: https://bootstrapmade.com/license/
+			========================================================
+	body
+		// ======= Header =======
+		header#header.fixed-top.d-flex.align-items-center
+			.container.d-flex.align-items-center
+				.logo.me-auto
+					h1
+						a(href='/') UGM
+					// Uncomment below if you prefer to use an image logo
+					// <a href="index.html"><img src="/adminlte/template/assets/img/logo.png" alt="" class="img-fluid"></a>
+				nav#navbar.navbar.order-last.order-lg-0
+					ul
+						li
+							a.nav-link.scrollto(href='/') Home
+						li.dropdown
+							a(href='#')
+								span Daftar Mahasiswa per Tahun
+								i.bi.bi-chevron-down
+							ul
+								li
+									a(href='/tahun/2020') 2020
+								li
+									a(href='/tahun/2021') 2021
+								li
+									a(href='/tahun/2022') 2022
+						li.dropdown
+							a(href='#')
+								span Daftar Mahasiswa per Fakultas
+								i.bi.bi-chevron-down
+							ul
+								li
+									a(href='/fakultas/Kedokteran Gigi') Kedokteran Gigi
+								li
+									a(href='/fakultas/Kedokteran Hewan') Kedokteran Hewan
+								li
+									a(href='/fakultas/Kedokteran') Kedokteran
+								li
+									a(href='/fakultas/Biologi') Biologi
+								li
+									a(href='/fakultas/Farmasi') Farmasi
+								li
+									a(href='/fakultas/Geografi') Geografi
+								li
+									a(href='/fakultas/Kehutanan') Kehutanan
+								li
+									a(href='/fakultas/MIPA') MIPA
+								li
+									a(href='/fakultas/Pertanian') Pertanian
+								li
+									a(href='/fakultas/Peternakan') Peternakan
+								li
+									a(href='/fakultas/Teknik') Teknik
+								li
+									a(href='/fakultas/Teknologi Pertanian') Teknologi Pertanian
+								li
+									a(href='/fakultas/Ekonomi dan Bisnis') Ekonomi dan Bisnis
+								li
+									a(href='/fakultas/Filsafat') Filsafat
+								li
+									a(href='/fakultas/Hukum') Hukum
+								li
+									a(href='/fakultas/Ilmu Budaya') Ilmu Budaya
+								li
+									a(href='/fakultas/ISIPOL') ISIPOL
+								li
+									a(href='/fakultas/Psikologi') Psikologi
+						li
+							a.nav-link.scrollto(href='/login/') Login
+					i.bi.bi-list.mobile-nav-toggle
+				// .navbar
+		// End Header
+		// ======= Hero Section =======
+		.pagetitle(style="margin-top: 90px; margin-left: 20px")
+			nav
+				ol.breadcrumb
+					li.breadcrumb-item
+						a(href='#') Tahun Masuk
+					li.breadcrumb-item.active #{data[0].tahun_masuk}
+		section#hero.d-flex.flex-column.justify-content-center.align-items-center
+			.container.text-center.text-md-left(data-aos='fade-up')
+				h1
+					| Universitas Gadjah Mada
+				h2 Selamat Datang di Website Daftar Mahasiswa Universitas Gadjah Mada
+		// End Hero
+		main#main
+			section#what-we-do.what-we-do
+				.container
+					.section-title
+							h2 Daftar Mahasiswa
+					.data-table
+						table.table.table-bordered(style="font-size: 14.5px")
+							tr
+								th
+									| No
+								th
+									| Foto
+								th
+									| Nama
+								th
+									| NIM
+								th
+									| TTL
+								th
+									| Alamat
+								th
+									| Fakultas
+								th
+									| Tahun Masuk
+								if messages.msg_error
+									| !{messages.msg_error}
+								else
+									for row, index in data 
+										tr
+											td #{index+1}
+											td 
+												if row.gambar
+													img( src="/images/upload/#{row.gambar}" height=100 width=100).img-circle
+												else
+													img( src="/images/upload/no image.jpg" height=100 width=100).img-circle
+											td #{row.nama}
+											td #{row.nim}
+											td #{row.ttl}
+											td #{row.alamat}
+											td #{row.fakultas}
+											td #{row.tahun_masuk}
+			// End #main
+			// ======= Footer =======
+			footer#footer
+				.container.d-md-flex.py-4
+					.me-md-auto.text-center.text-md-start
+						.copyright
+							| © Copyright 
+							strong
+								span Favian Zhafif Arkan
+							| . All Rights Reserved
+							// All the links in the footer should remain intact.
+							// You can delete the links only if you purchased the pro version.
+							// Licensing information: https://bootstrapmade.com/license/
+							// Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/lumia-bootstrap-business-template/
+					.social-links.text-center.text-md-right.pt-3.pt-md-0
+						a.facebook(href='#')
+							i.bx.bxl-facebook
+						a.instagram(href='#')
+							i.bx.bxl-instagram
+						a.google-plus(href='#')
+							i.bx.bxl-skype
+			// End Footer
+			a.back-to-top.d-flex.align-items-center.justify-content-center(href='#')
+				i.bi.bi-arrow-up-short
+			// Vendor JS Files
+			script(src='/adminlte/template/assets/vendor/purecounter/purecounter.js')
+			script(src='/adminlte/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')
+			script(src='/adminlte/template/assets/vendor/glightbox/js/glightbox.min.js')
+			script(src='/adminlte/template/assets/vendor/isotope-layout/isotope.pkgd.min.js')
+			script(src='/adminlte/template/assets/vendor/swiper/swiper-bundle.min.js')
+			script(src='/adminlte/template/assets/vendor/waypoints/noframework.waypoints.js')
+			script(src='/adminlte/template/assets/vendor/php-email-form/validate.js')
+			// Template Main JS File
+			script(src='/adminlte/template/assets/js/main.js')
